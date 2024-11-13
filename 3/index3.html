@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифрування</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .input-field, .output-field {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Простий шифр</h1>
+    <input type="text" id="inputText" class="input-field" placeholder="Введіть текст для шифрування">
+    <button onclick="encryptText()" class="btn">Зашифрувати</button>
+    <input type="text" id="outputText" class="output-field" placeholder="Результат шифрування" readonly>
+</div>
+<script>
+    function encryptText() {
+        const alphabet = "абвгґдежзийклмнопрстуфхцчшщьюя";
+        let inputText = document.getElementById("inputText").value.toLowerCase();
+        let encryptedText = "";
+
+        for (let i = 0; i < inputText.length; i++) {
+            let char = inputText[i];
+            let index = alphabet.indexOf(char);
+
+            if (index !== -1) {
+                encryptedText += alphabet[(index + 1) % alphabet.length];
+            } else {
+                encryptedText += char;
+            }
+        }
+        document.getElementById("outputText").value = encryptedText;
+    }
+</script>
+</body>
+</html>

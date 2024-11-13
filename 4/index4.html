@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифрування тексту</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe9c9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fffbf0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        .container h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .input-field, .output-field {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #fffbe6;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background-color: #e64e40;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-clear {
+            background-color: #4caf50;
+        }
+
+        .btn-clear:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Шифрування тексту</h1>
+    <input type="text" id="inputText" class="input-field" placeholder="Введіть текст для шифрування">
+    <button onclick="encryptText()" class="btn">Зашифрувати</button>
+    <button onclick="clearText()" class="btn btn-clear">Очистити</button>
+    <input type="text" id="outputText" class="output-field" placeholder="Результат шифрування" readonly>
+</div>
+<script>
+    function encryptText() {
+        let inputText = document.getElementById("inputText").value;
+        let words = inputText.split(" ");
+        let encryptedWords = words.map(word => {
+            if (word.length <= 3) return word;  
+            let middle = word.slice(1, -1).split("");
+            for (let i = middle.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [middle[i], middle[j]] = [middle[j], middle[i]]; 
+            }
+            
+            return word[0] + middle.join("") + word[word.length - 1];
+        });
+        document.getElementById("outputText").value = encryptedWords.join(" ");
+    }
+    function clearText() {
+        document.getElementById("inputText").value = "";
+        document.getElementById("outputText").value = "";
+    }
+</script>
+
+</body>
+</html>

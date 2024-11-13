@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5.2</title>
+</head>
+<body>
+<h2>Результати обробки тексту</h2>
+<div id="output"></div>
+<script>
+    let inputText = "Простий приклад для перевірки програми при обробці слів";
+    let words = inputText.split(" ");
+    let countWordsWithR = words.filter(word => word[1] === 'р').length;
+    document.getElementById('output').innerHTML += "Кількість слів, де друга літера 'р': " + countWordsWithR + "<br>";
+    let modifiedWords = words.map(word => word.slice(0, -1));
+    let modifiedText = modifiedWords.join(" ");
+    document.getElementById('output').innerHTML += "Текст без останніх літер у словах: " + modifiedText + "<br>";
+</script>
+</body>
+</html>

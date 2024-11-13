@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5.1</title>
+</head>
+<body>
+<h2>Результати обробки рядка</h2>
+<div id="output"></div>
+<script>
+    let inputString = "AAB+BBBAA-BBA";
+    let modifiedString = inputString.replace(/A/g, 'A ');
+    document.getElementById('output').innerHTML += "Рядок з пробілами після 'A': " + modifiedString + "<br>";
+    let plusIndex = modifiedString.indexOf('+');
+    let minusIndex = modifiedString.indexOf('-');
+    let countB = 0;
+    if (plusIndex !== -1 && minusIndex !== -1 && plusIndex < minusIndex) {
+        let substring = modifiedString.slice(plusIndex + 1, minusIndex);
+        countB = (substring.match(/B/g) || []).length;
+    }
+    document.getElementById('output').innerHTML += "Кількість символів 'B' між '+' і '-': " + countB + "<br>";
+</script>
+</body>
+</html>
